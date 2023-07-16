@@ -1,0 +1,19 @@
+.input {
+width: 100%;
+  height: 2.5rem;
+  background-color: var(--bgInput);
+  padding: 0.3125rem;
+  text-align: center;
+  font-size: 17px;
+  color: var(--fontClrWhite);
+}
+
+.top {
+  border-top-left-radius: var(--radiosBdInput);
+  border-top-right-radius: var(--radiosBdInput);
+}
+
+.bottom {
+  border-bottom-left-radius: var(--radiosBdInput);
+  border-bottom-right-radius: var(--radiosBdInput);
+}

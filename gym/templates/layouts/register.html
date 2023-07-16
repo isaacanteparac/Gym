@@ -1,0 +1,29 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static '/style/main.css' %}" />
+    <script src="{% static '/js/register.js' %}"></script>
+
+    <title>GYM</title>
+  </head>
+  <body class="contentCenter">
+    <div class="contentColumns big">
+      <picture class="contentCenter">
+        <img class="logo" src="{% static  'img/logo.png' %}" alt="sds" />
+      </picture>
+      <nav class="navRegister">
+        <ul class="navRegister_ul">
+          <li class="navRegister_li">
+            <a href="{% url 'login' %}" id="login" onclick="cambiarColor('login')">log in</a>
+          </li>
+          <li class="navRegister_li">
+            <a href="{% url 'signup' %}" id="signup" onclick="cambiarColor('signup')">sign up</a>
+          </li>
+        </ul>
+      </nav>
+      {% block content %} {% endblock %}
+    </div>
+  </body>
+</html>

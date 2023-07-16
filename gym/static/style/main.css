@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Galada&family=Germania+One&family=Roboto+Slab&family=Slabo+27px&family=Suez+One&family=Vollkorn:wght@500&display=swap');
+
+@import url(reset.css);
+@import url(box.css);
+@import url(variables.css);
+@import url(img.css);
+@import url(input.css);
+@import url(buttons.css);
+@import url(nav.css);

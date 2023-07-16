@@ -1,0 +1,21 @@
+:root {
+  /*backgrounds*/
+  --bgBody: #202020;
+  --bgBox: #000;
+  --bgInput: #373737;
+  --bgButton: #ffffff;
+  --bgButtonDisabled: #808080;
+  /*color*/
+  --clrPrimary: #ff6188;
+  --clrSecondary: #ab8df2;
+  --clrTertiary: #60e9f3;
+  --clrQuaternary: #fc9867;
+  --clrQuinary: #fff48a;
+  /*fonts*/
+  --fontClrLink: #80c2eb;
+  --fontClrPlaceholder: #8b8b8b;
+  --fontClrWhite: #ffffff;
+  --fontClrBtn: #000;
+  /*border*/
+  --radiosBdInput: .625rem;
+}
