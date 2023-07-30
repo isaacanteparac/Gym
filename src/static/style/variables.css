@@ -2,6 +2,7 @@
   /*backgrounds*/
   --bgBody: #202020;
   --bgBox: #000;
+  --bgBoxW:#fff;
   --bgInput: #373737;
   --bgButton: #ffffff;
   --bgButtonDisabled: #808080;
@@ -20,4 +21,5 @@
   --fontClrBtn: #000;
   /*border*/
   --radiosBdInput: .625rem;
+  --radiosBig: 1.25rem;
 }

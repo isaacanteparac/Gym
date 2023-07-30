@@ -21,3 +21,20 @@ input {
   outline: none;
   border: none;
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  border-radius: 50px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #0745ff;
+}

@@ -5,6 +5,7 @@ import aiohttp
 @component
 def CardRegulation(data):
     url = "http://127.0.0.1:8000/api/regulation/put/" + str(data["id"])
+    urlDelete = "http://127.0.0.1:8000/api/regulation/delete/" + str(data["id"])
     name, setName = hooks.use_state(initial_value=data["name"])
     code, setCode = hooks.use_state(initial_value=data["code"])
     description, setDescription = hooks.use_state(initial_value=data["description"])
@@ -19,19 +20,29 @@ def CardRegulation(data):
                 response = await resp.json()
                 print(response)
 
+    @event(prevent_default=True)
+    async def delete(event):
+        setEdit(False)
+        async with aiohttp.ClientSession() as session:
+            async with session.delete(urlDelete) as resp:
+                response = await resp.json()
+                print(response)
+
     def cancelEdit(event):
         setEdit(False)
         setName(data["name"])
         setDescription(data["description"])
 
     return html.div(
-        {"class": "cardRegulation"},
+        {"class": "card"},
         edit
         and html.div(
+            {"class": "editForm"},
+            html.h2("Editar reglamentos"),
+            html.label("nombre"),
             html.input(
                 {
                     "on_change": lambda event: setName(event["target"]["value"]),
-                    "placeholder": "titulo",
                     "value": name,
                 }
             ),
@@ -46,15 +57,21 @@ def CardRegulation(data):
                 }
             ),
             html.div(
+                html.div(
+                    {"class": "twoButton"},
+                    html.button({"type": "button", "on_click": update}, "actualizar"),
+                    html.button({"type": "button", "on_click": delete}, "Eliminar"),
+                ),
                 html.button({"type": "button", "on_click": cancelEdit}, "cancelar"),
-                html.button({"type": "button", "on_click": update}, "actualizar"),
             ),
         )
-        or html.h3(name),
-        html.label(code),
-        html.p(description),
-        html.button(
-            {"type": "button", "on_click": lambda event: setEdit(True)},
-            "Editar descripcion",
+        or html._(
+            html.h3(name),
+            html.label(code),
+            html.p(description),
+            html.button(
+                {"type": "button", "on_click": lambda event: setEdit(True)},
+                "Editar descripcion",
+            ),
         ),
     )

@@ -57,7 +57,7 @@ class BlackList_:
                     return JsonResponse({"delete": True})
                 else:
                     return JsonResponse({"delete": False})
-            except Regulation.DoesNotExist:
+            except blacklistFilter.DoesNotExist:
                 return JsonResponse({"msg": "no se encontro nada"})
         else:
             return JsonResponse({"error": "Method not allowed"}, status=405)

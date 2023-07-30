@@ -17,3 +17,30 @@ width: 100%;
   border-bottom-left-radius: var(--radiosBdInput);
   border-bottom-right-radius: var(--radiosBdInput);
 }
+
+.formOp label,
+.editForm label {
+  width: 100%;
+  font-size: 1.0625rem;
+  text-align: left;
+  font-family: "Roboto Slab", serif;
+  text-transform: capitalize;
+}
+
+.formOp input,
+.editForm input {
+  height: 30px;
+  width: 100%;
+  border-radius: var(--radiosBdInput);
+  padding-inline: 5px;
+  border: 2px solid black;
+}
+
+.formOp textarea,
+.editForm textarea {
+  width: 100%;
+  height: 70px;
+  resize: none;
+  border-radius: var(--radiosBdInput);
+  border: 2px solid black;
+}

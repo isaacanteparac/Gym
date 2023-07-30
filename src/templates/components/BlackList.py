@@ -1,13 +1,13 @@
 from reactpy import html, hooks, component
 from .FormBlackList import FormBlackList
-from .CardRegulation import CardRegulation
+from .CardBlackList import CardBlackList
 import aiohttp
 
 
 
 @component
 def BlackList():
-    getUrl = "http://127.0.0.1:8000/api/regulation/get/all"
+    getUrl = "http://127.0.0.1:8000/api/blacklist/get/all"
     regulationeData, setRegulationeData = hooks.use_state(initial_value="")
 
     async def getData():
@@ -19,7 +19,7 @@ def BlackList():
     def renderUsers():
         rows = []
         for regulation in regulationeData:
-            rows.append(CardRegulation(regulation))
+            rows.append(CardBlackList(regulation))
         return rows
 
     hooks.use_effect(getData, [])
@@ -27,4 +27,5 @@ def BlackList():
     return html.div(
         {"class":"wrapper"},
         FormBlackList(),
+        renderUsers()
     )

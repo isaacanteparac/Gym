@@ -16,31 +16,39 @@ def FormRegulation():
             async with session.post(url, data=data) as resp:
                 response = await resp.json()
                 print(response)
+        setName("")
+        setCode("")
+        setDescription("")
 
     return html.form(
-        {"class": "form"},
+        {"class": "formOp"},
+        html.h2("crear reglamentos"),
+        html.label("nombre"),
         html.input(
             {
                 "type": "text",
                 "required": True,
-                "placeholder": "Titulo",
                 "name": "name",
+                "value":name,
                 "on_change": lambda event: setName(event["target"]["value"]),
             }
         ),
+        html.label("Codigo"),
         html.input(
             {
                 "required": True,
                 "type": "text",
-                "placeholder": "Codigo",
                 "name": "code",
+                "value":code,
                 "on_change": lambda event: setCode(event["target"]["value"]),
             }
         ),
+        html.label("descripcion"),
         html.textarea(
             {
                 "required": True,
                 "name": "description",
+                "value":description,
                 "on_change": lambda event: setDescription(event["target"]["value"]),
             }
         ),

@@ -30,6 +30,7 @@ urlpatterns = [
     path("api/regulation/create", regulation.create),
     path("api/regulation/get/all", regulation.getAll),
     path("api/regulation/put/<id>", regulation.update),
+    path("api/regulation/delete/<id>", regulation.delete),
 
     #blacklist
     path("api/blacklist/create", blackList.create),

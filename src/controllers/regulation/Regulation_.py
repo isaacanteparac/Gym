@@ -49,3 +49,20 @@ class Regulation_:
                 return JsonResponse({"msg": False})
         except Regulation.DoesNotExist:
             return JsonResponse({"msg": "no se encontro nada"})
+
+    @csrf_exempt
+    def delete(self, request, id) -> JsonResponse:
+        if request.method == "DELETE":
+            try:
+                id = int(id)
+                regulationFilter = Regulation.objects.filter(id=id)
+                if regulationFilter.exists():
+                    regulation = regulationFilter.get()
+                    regulation.delete()
+                    return JsonResponse({"delete": True})
+                else:
+                    return JsonResponse({"delete": False})
+            except Regulation.DoesNotExist:
+                return JsonResponse({"msg": "no se encontro nada"})
+        else:
+            return JsonResponse({"error": "Method not allowed"}, status=405)
