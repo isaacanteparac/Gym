@@ -7,34 +7,37 @@
 - [download DB Browser for SQLite - PortableApp](https://sqlitebrowser.org/dl/)
 - [documentacion - jinja motor de plantillas](https://jinja.palletsprojects.com/en/3.1.x/)
 - [documentation - orm models](https://docs.djangoproject.com/en/4.2/topics/db/models/)
+- [documentation - reacpy](https://reactive-python.github.io/reactpy-django/get-started/installation/)
 
-### entonrono virtual (no ejecutar )
+### entonrono virtual
 
 - > creacion
   - pip install virtualenv
-  - virtual venv
+  - virtualenv venv
+- > activacion
+  - .\venv\Scripts\activate.bat
 - > instalacion modulos
   - pip install django
     - veririfacion de instalacion django-admin --version
+  - pip install reactpy-django
+  - pip install channels[daphne]
+  - pip install aiohttp
+
 - > generar proyecto
   - django-admin startproject nombrePro .
 
-### activacion entorno virtual (ejecutar)
+### generar tablas
 
-- > activacion
-  - .\venv\Scripts\activate.bat
-- > generar tablas
-  - add tablas en ./gym/models
-  - python manage.py makemigrations gym
-  - python manage.py migrate gym
-  - agregar su respectivo __str__ en ./gym/models
+- add tablas en ./gym/models
+- python manage.py makemigrations src
+- python manage.py migrate
+- agregar su respectivo __str__ en ./gym/models
 
 ### correr server ( ejecutar)
 
 - python manage.py startapp gym
 - *ejecutar* python manage.py runserver
 - [localhost 8000](http://127.0.0.1:8000/)
-
 
 ### generar datos
 

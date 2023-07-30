@@ -1,0 +1,32 @@
+.btn {
+  height: 3.125rem;
+  border-radius: 25px;
+  text-transform: capitalize;
+  font-size: 1.0625rem;
+}
+
+.submit {
+  margin-block: 20px;
+  width: auto;
+  background-color: var(--bgButton);
+  color: var(--fontClrBtn);
+}
+
+.registerBtn {
+  width: 100%;
+}
+
+.save {
+  height: 30px;
+  color: var(--bgBox);
+  border-radius: var(--radiosBdInput);
+  border: none;
+  padding-inline: 5px;
+  font-size: 1.0625rem;
+}
+
+
+input[type="checkbox"] {
+  width: 1.25rem;
+  height: 1.25rem;
+}
