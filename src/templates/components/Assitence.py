@@ -20,7 +20,7 @@ def Assitence():
             rows.append(UserAssistence(user))
         return rows
 
-    hooks.use_effect(getData, [])
+    hooks.use_effect(getData)
 
     return html.div(
         html.table(

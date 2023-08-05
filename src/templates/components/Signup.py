@@ -67,5 +67,5 @@ def Signup():
             ),
         ),
         html.button({"class": "btn submit registerBtn", "type": "submit"}, "Log In ➔"),
-        error and html.div({"class": "error"}, html.p(textError)),
+        error and html.div({"class": "error"}, html.p(textError)) or html._()
     )

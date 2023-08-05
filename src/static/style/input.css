@@ -1,5 +1,5 @@
 .input {
-width: 100%;
+  width: 100%;
   height: 2.5rem;
   background-color: var(--bgInput);
   padding: 0.3125rem;
@@ -28,12 +28,18 @@ width: 100%;
 }
 
 .formOp input,
-.editForm input {
+.formOp select,
+.editForm input,
+.editForm select {
   height: 30px;
   width: 100%;
   border-radius: var(--radiosBdInput);
   padding-inline: 5px;
   border: 2px solid black;
+}
+
+.editForm input {
+  background-color: var(--bgBoxW);
 }
 
 .formOp textarea,

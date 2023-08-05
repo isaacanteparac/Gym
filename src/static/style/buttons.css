@@ -50,6 +50,7 @@ input[type="checkbox"] {
   background-color: var(--clrQuinary);
   color: var(--fontClrBtn);
   margin: auto;
+  font-weight: bolder;
 }
 
 .twoButton {
@@ -71,4 +72,3 @@ input[type="checkbox"] {
 .editForm .twoButton button:nth-child(1) {
   background-color: var(--clrSecondary);
 }
-

@@ -36,6 +36,7 @@ class Assistance_:
     def getAllToday(self, request) -> JsonResponse:
         date_ = date.today()
         assistances = Assistance.objects.filter(date=date_)
+
         data = [assistance.convertTojson() for assistance in assistances]
         return JsonResponse(data, safe=False)
 
@@ -65,7 +66,7 @@ class Assistance_:
         
 
     @csrf_exempt
-    def update(self, request,id) ->JsonResponse:
+    def update(self, request,id) ->HttpResponse:
         try:
             state = request.POST.get("state")
             assistenceFilter = Assistance.objects.filter(id=id)

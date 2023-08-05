@@ -136,42 +136,54 @@ body {
   color: var(--fontClrBtn);
 }
 
-
-
-
 .card {
   background-color: var(--bgBox);
   width: 300px;
-  height: 340px;
+  min-height: 250px;
+  max-height: 400px;
   border-radius: 20px;
   padding: 10px;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
-.card label, .card h3, .card p{
+.card label,
+.card h3,
+.card p {
   color: var(--fontClrWhite);
 }
 
-.card label, .card p{
+.card h3{
+  max-height: 50px;
+  overflow: auto;
+  margin-bottom: 10px;
+}
+
+.card label,
+.card p {
   font-size: 17px;
+  margin-bottom: 5px;
+  overflow: auto;
+  max-height: 50px;
 }
 
-.card label{
-  color: var(--clrPrimary);
+.card .subTitle {
+  color: var(--fontClrPlaceholder);
+  text-transform: capitalize;
+  font-family: "Roboto Slab", serif;
+  text-transform: capitalize;
+  margin-top: 10px;
 }
 
-.card p{
-  height: 250px;
-  margin-bottom: .625rem;
+.card p {
+  max-height: 250px;
+  margin-bottom: 0.625rem;
   overflow: auto;
 }
 
-
-
 .editForm {
-  background-color: var(--bgBoxW);
-  height: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -179,11 +191,11 @@ body {
   gap: 10px;
   border-radius: 30px;
   padding-inline: 10px;
-
 }
 
-.editForm label{
-  color: var(--fontClrBtn);
+.editForm label {
+  color: var(--fontClrWhite);
+  margin-bottom: 3px;
 }
 
 .editForm div {
@@ -194,5 +206,3 @@ body {
   align-items: center;
   justify-content: center;
 }
-
-

@@ -13,16 +13,12 @@
       <div id="contentAssistence">
         {% component "src.templates.components.Assitence.Assitence" %}
       </div>
-      <!--<div id="contentGymBranch" style="display: none;">
-        <h1>Sucursales</h1>
-      </div>-->
+      <div id="contentGymBranch" style="display: none;">
+        {% component "src.templates.components.GymBranch.GymBranch" %}
+      </div>
       <div id="contentRegulation" style="display: none;">
-        {% component "src.templates.components.Regulation.Regulation" %}
+        <h1>Reglamentos</h1>
       </div>
-      <div id="contentBlackList" style="display: none;">
-        {% component "src.templates.components.BlackList.BlackList" %}
-      </div>
-        
         
     </div>
 
@@ -32,54 +28,39 @@
       </picture>
       <ul class="navUl">
         <li><button id="assistanceButton">Asistencia</button></li>
-        <!--<li><button id="gymBranchButton">Sucursales</button></li>-->
+        <li><button id="gymBranchButton">Sucursales</button></li>
         <li><button id="regulationButton">Reglamentos</button></li>
-        <li><button id="blackListButton">Lista Negra</button></li>
         <li><a href={% url 'logout' %}>logout</a></li>
       </ul>
     </nav>
   </body>
   <script>
       const assistanceButton = document.getElementById('assistanceButton');
-      //const gymBranchButton = document.getElementById('gymBranchButton');
+      const gymBranchButton = document.getElementById('gymBranchButton');
       const regulationButton = document.getElementById('regulationButton');
-      const blackListButton = document.getElementById('blackListButton');
 
       const contentAssistence = document.getElementById('contentAssistence');
-      //const contentGymBranch = document.getElementById('contentGymBranch');
+      const contentGymBranch = document.getElementById('contentGymBranch');
       const contentRegulation = document.getElementById('contentRegulation');
-      const contentBlackList = document.getElementById('contentBlackList');
 
 
       assistanceButton.addEventListener('click', function () {
-        //contentGymBranch.style.display = 'none'
+        contentGymBranch.style.display = 'none'
         contentAssistence.style.display = "block"
         contentRegulation.style.display = "none"
-        contentBlackList.style.display = "none"
       });
 
-      /*
       gymBranchButton.addEventListener('click', function () {
         contentGymBranch.style.display = 'block'
         contentAssistence.style.display = "none"
         contentRegulation.style.display = "none"
-        contentBlackList.style.display = "none"
-      });*/
+      });
 
       regulationButton.addEventListener('click', function () {
 
-        //contentGymBranch.style.display = 'none'
+        contentGymBranch.style.display = 'none'
         contentAssistence.style.display = "none"
         contentRegulation.style.display = "block"
-        contentBlackList.style.display = "none"
-      });
-
-      blackListButton.addEventListener('click', function () {
-
-        //contentGymBranch.style.display = 'none'
-        contentAssistence.style.display = "none"
-        contentRegulation.style.display = "none"
-        contentBlackList.style.display = "block"
       });
   </script>
 </html>

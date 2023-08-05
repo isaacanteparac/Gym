@@ -103,6 +103,7 @@
   font-size: 17px;
   font-family: 'Roboto Slab', serif;
   text-transform: capitalize;
+  border: none;
 }
 
 .navUl a:active {

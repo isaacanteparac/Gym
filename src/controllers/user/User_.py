@@ -1,4 +1,4 @@
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.http import JsonResponse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
