@@ -71,9 +71,8 @@ class User_:
                         username=username,
                         password=password,
                     )
-                    user.save()
                     login(request, user)
-                    return redirect("clientMain")
+                    return redirect("client")
                 except InterruptedError:
                     return redirect("login")
             else:
