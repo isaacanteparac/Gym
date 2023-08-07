@@ -20,7 +20,7 @@ class GymBranch_:
                 GymBranch.objects.create(
                     name=name, phone=phone, location=location, open=open
                 )
-                return JsonResponse({"msg": "success"})
+                return JsonResponse({"msg": "branch created successfully"})
             except IntegrityError:
                 return JsonResponse({"msg": "it was not created"})
         else:
@@ -45,7 +45,7 @@ class GymBranch_:
                 gymBranch.location = location
                 gymBranch.open = open
                 gymBranch.save(update_fields=["phone", "name", "location", "open"])
-                return JsonResponse({"put": True})
+                return JsonResponse({"msg": True})
             else:
                 return JsonResponse({"msg": False})
         except GymBranch.DoesNotExist:
@@ -60,9 +60,9 @@ class GymBranch_:
                 if gymBranchFilter.exists():
                     gymBranch = gymBranchFilter.get()
                     gymBranch.delete()
-                    return JsonResponse({"delete": True})
+                    return JsonResponse({"msg": True})
                 else:
-                    return JsonResponse({"delete": False})
+                    return JsonResponse({"msg": False})
             except GymBranch.DoesNotExist:
                 return JsonResponse({"msg": "nothing was found"})
         else:

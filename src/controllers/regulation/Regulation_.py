@@ -22,7 +22,7 @@ class Regulation_:
                     code=code,
                     description=description,
                 )
-                return JsonResponse({"msg": "success"})
+                return JsonResponse({"msg": "the regulation was created correctly"})
             except IntegrityError:
                 return JsonResponse({"msg": "it was not created"})
         else:
@@ -44,7 +44,7 @@ class Regulation_:
                 regulation.description = description
                 regulation.name = name
                 regulation.save(update_fields=["description","name"])
-                return JsonResponse({"put": True})
+                return JsonResponse({"msg": True})
             else:
                 return JsonResponse({"msg": False})
         except Regulation.DoesNotExist:
@@ -59,10 +59,10 @@ class Regulation_:
                 if regulationFilter.exists():
                     regulation = regulationFilter.get()
                     regulation.delete()
-                    return JsonResponse({"delete": True})
+                    return JsonResponse({"msg": True})
                 else:
-                    return JsonResponse({"delete": False})
+                    return JsonResponse({"msg": False})
             except Regulation.DoesNotExist:
                 return JsonResponse({"msg": "nothing was found"})
         else:
-            return JsonResponse({"error": "Method not allowed"}, status=405)
+            return JsonResponse({"msg": "Method not allowed"}, status=405)

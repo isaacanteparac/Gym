@@ -17,17 +17,16 @@ def GymBranch():
             async with session.get(getUrl) as resp:
                 response = await resp.json()
                 setBranchData(response)
-        renderUsers()
+        renderBranch()
 
-    def renderUsers():
+    def renderBranch():
         for branch in branchData:
             rows.append(CardGymBranch(branch))
 
-    # poner el         rows
-    
-    #hooks.use_effect(getData,[])
+    hooks.use_effect(getData)
 
     return html.div(
         {"class":"wrapper"},
         FormGymBranch(),
+        rows
     )

@@ -28,13 +28,16 @@ class BlackList_:
                     )
                     user.is_active = False
                     user.save(update_fields=["is_active"])
-                    return JsonResponse({"msg": "success"})
+                    return JsonResponse({"msg": "created successfully"})
+                else:
+                    return JsonResponse({"msg": "regulation code or username does not exist"})
             except Regulation.DoesNotExist:
-                return JsonResponse({"msg": "there is no regulation"})
+                return JsonResponse({"msg": "regulation code does not exist"})
             except User.DoesNotExist:
-                return JsonResponse({"msg": "no user exists"})
+                return JsonResponse({"msg": "Username does not exist"})
         else:
-            return JsonResponse({"msg": "there are empty fields"})
+            return JsonResponse({"msg": "There are empty fields"})
+
 
     def getAll(self, request) -> JsonResponse:
         blacklist = Blacklist.objects.all()

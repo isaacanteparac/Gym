@@ -154,7 +154,7 @@ body {
   color: var(--fontClrWhite);
 }
 
-.card h3{
+.card h3 {
   max-height: 50px;
   overflow: auto;
   margin-bottom: 10px;
@@ -205,4 +205,34 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.alert {
+  position: fixed;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #2e3cff;
+  border-radius: .9375rem;
+  width: 250px;
+  min-height: 2.5rem;
+  height: auto;
+  padding: 0.625rem;
+  overflow: hidden;
+  gap: 0.3125rem;
+}
+
+.alert label {
+  font-size: 1.125rem;
+  color: var(--fontClrWhite);
+  text-transform: capitalize;
+}
+
+.alert button {
+  background-color: transparent;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--fontClrWhite);
+
 }
