@@ -18,7 +18,7 @@ class Assistance(models.Model):
             "idUser": self.idUser.id,
             "username": self.idUser.username,
             "first_name": self.idUser.first_name,
-            "last_name":self.idUser.last_name,
+            "last_name": self.idUser.last_name,
         }
 
     def __str__(self) -> str:
@@ -27,25 +27,30 @@ class Assistance(models.Model):
 
 
 class Regulation(models.Model):
-    name = models.CharField(max_length=50)  # Nombre del reglamento
+    name = models.CharField(max_length=50)
     code = models.CharField(max_length=5)
-    description = models.TextField()  # Descripción del reglamento
+    description = models.TextField()
 
     def __str__(self):
         return f"ID:{self.id} | NAME: {self.name} | DESCRIPTION: {self.description} | CODE: {self.code}"
 
 
 class Blacklist(models.Model):
-    idUser = models.OneToOneField(
-        User, on_delete=models.CASCADE, related_name="blacklist"
-    )  # Relación uno a uno con el modelo User
-    id_reglamento = models.ForeignKey(
-        "Regulation", on_delete=models.CASCADE
-    )  # Relación con el modelo Reglamento
-    reason = models.TextField()  # Motivo de inclusión en la lista negra
-    date = models.DateTimeField(
-        auto_now_add=True
-    )  # Fecha y hora en que se agregó a la lista negra
+    idUser = models.ForeignKey(User, on_delete=models.CASCADE)
+    idRegulation = models.ForeignKey(Regulation, on_delete=models.CASCADE)
+    reason = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+
+    def convertTojson(self):
+        return {
+            "id": self.id,
+            "reason": self.reason,
+            "codeRegulation": self.idRegulation.code,
+            "username": self.idUser.username,
+            "userActive": self.idUser.is_active,
+            "first_name": self.idUser.first_name,
+            "last_name": self.idUser.last_name,
+        }
 
     def __str__(self):
         return f"ID: {self.id} | IDUSER: {self.idUser.username} | REASON: {self.reason} | DATE: {self.date_added}"

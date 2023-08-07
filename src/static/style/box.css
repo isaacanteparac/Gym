@@ -177,7 +177,7 @@ body {
 }
 
 .card p {
-  max-height: 250px;
+  max-height: 125px;
   margin-bottom: 0.625rem;
   overflow: auto;
 }

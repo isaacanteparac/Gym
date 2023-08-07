@@ -23,11 +23,11 @@ def GymBranch():
         for branch in branchData:
             rows.append(CardGymBranch(branch))
 
+    # poner el         rows
     
-    hooks.use_effect(getData)
+    #hooks.use_effect(getData,[])
 
     return html.div(
         {"class":"wrapper"},
         FormGymBranch(),
-        rows
     )
