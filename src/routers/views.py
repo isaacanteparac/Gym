@@ -2,8 +2,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 
-def register(request):
-    return render(request, "register.html",)
+def login(request):
+    return render(request, "components/register/login.html",)
+
+def signup(request):
+    return render(request, "components/register/signup.html")
 
 @login_required
 def signout(request):

@@ -1,8 +1,7 @@
 from django.shortcuts import redirect, render
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
-from django.views.decorators.csrf import csrf_exempt
 
 
 class User_:
@@ -11,7 +10,6 @@ class User_:
     email = ""
     password = ""
     admin = False
-
     ui = {
         "client": "clientMain",
         "operator": "operatorMain",
@@ -19,14 +17,6 @@ class User_:
         "r_signup": "../templates/components/register/signup.html",
     }
 
-    msg = {
-        "error": {"user": "Email o Usuario ya se encuentran registrados"},
-        "success": {
-            "user": "Usuario existe",
-        },
-    }
-
-    @csrf_exempt
     def auth(self, request) -> None:
         if request.method == "POST":
             username = request.POST.get("username")
@@ -40,9 +30,12 @@ class User_:
                     renderHtml = self.ui["client"]
                 return redirect(renderHtml)
             else:
-                return redirect("login")
+                return render(
+                    request,
+                    "../templates/components/register/login.html",
+                    {"error": "Contraseña o Email incorrecto", "active": True},
+                )
 
-    @csrf_exempt
     def create(self, request) -> None:
         first_name = request.POST.get("first_name")
         last_name = request.POST.get("last_name")
@@ -50,37 +43,23 @@ class User_:
         username = request.POST.get("username")
         password = request.POST.get("password")
         passwordRepeat = request.POST.get("passwordRepeat")
+        if password == passwordRepeat:
+            try:
+                user = User.objects.create_user(
+                    first_name=first_name,
+                    last_name=last_name,
+                    email=email,
+                    username=username,
+                    password=password,
+                )
+                user.save()
+                login(request, user)
+                return redirect("clientMain")
+            except InterruptedError:
+                return render("signup", {"msg": "Usuario existe"})
 
-        if not (
-            first_name != ""
-            and last_name != ""
-            and email != ""
-            and username != ""
-            and password != ""
-            and passwordRepeat != ""
-        ):
-            if (password == passwordRepeat) and (
-                not User.objects.filter(username=username).exists()
-                and not User.objects.filter(email=email).exists()
-            ):
-                try:
-                    user = User.objects.create_user(
-                        first_name=first_name,
-                        last_name=last_name,
-                        email=email,
-                        username=username,
-                        password=password,
-                    )
-                    login(request, user)
-                    return redirect("client")
-                except InterruptedError:
-                    return redirect("login")
-            else:
-                return redirect("login")
-        else:
-            return redirect("login")
+        return redirect("signup")
 
-    @csrf_exempt
     def update(self, request, username) -> JsonResponse:
         try:
             user = User.objects.get(username=username)
@@ -92,7 +71,6 @@ class User_:
         user.save()
         return JsonResponse({"update": True})
 
-    @csrf_exempt
     def delete(self, request, username) -> JsonResponse:
         try:
             user = User.objects.get(username=username)
@@ -105,7 +83,6 @@ class User_:
         usersAll = list(User.objects.values())
         return JsonResponse(usersAll, safe=False)
 
-    @csrf_exempt
     def searchUsername(self, request, username) -> JsonResponse:
         user = list(User.objects.filter(username=username).values())
         return JsonResponse(user, safe=False)

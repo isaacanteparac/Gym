@@ -1,4 +1,4 @@
-{% load reactpy %} {% load static %}
+{% load static %}
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -13,7 +13,17 @@
       <picture class="contentCenter">
         <img class="logo" src="{% static  'img/logo.png' %}" alt="sds" />
       </picture>
-      {% component "src.templates.components.Register_.Register" %}
+      <nav class="navRegister">
+        <ul class="navRegister_ul">
+          <li class="navRegister_li">
+            <a href="{% url 'login' %}" id="login" onclick="cambiarColor('login')">log in</a>
+          </li>
+          <li class="navRegister_li">
+            <a href="{% url 'signup' %}" id="signup" onclick="cambiarColor('signup')">sign up</a>
+          </li>
+        </ul>
+      </nav>
+      {% block content %} {% endblock %}
     </div>
   </body>
 </html>
