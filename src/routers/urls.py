@@ -1,37 +1,19 @@
 from django.urls import path
 from . import views
-from ..controllers.user.User_ import User_
-from ..controllers.user.Assistance_ import Assistance_
 from ..controllers.gymBranch.GymBranch_ import GymBranch_
-from ..controllers.regulation.Regulation_ import Regulation_
-from ..controllers.regulation.BlackList_ import BlackList_
+from ..controllers.user.F_User import F_User
+from ..controllers.regulation.F_Regulation import F_Regulation
 
-
-user = User_()
-assistance = Assistance_()
+fuser = F_User()
+fregulation = F_Regulation()
 gymBranch = GymBranch_()
-regulation = Regulation_()
-blackList = BlackList_()
 
 urlpatterns = [
-    #path("", views.register, name="login"),
-
     path("", views.login, name="login"),
     path("sign-up/", views.signup, name="signup"),
-
     path("logout/", views.signout, name="logout"),
     path("profile/", views.client, name="clientMain"),
     path("operator/", views.opetator, name="operatorMain"),    
-
-    #api
-    path("api/users", user.getAll),
-    path("api/user/create", user.create),
-    path("api/user/auth", user.auth),
-
-    #asistencia
-    path("api/assitance/get", assistance.getAllToday),
-    path("api/assitance/put/<id>", assistance.update),
-    path("api/assitance/search", assistance.searchUser),
 
     #gymbranch
     path("api/branch/get", gymBranch.getAll),
@@ -39,16 +21,9 @@ urlpatterns = [
     path("api/branch/put/<id>", gymBranch.update),
     path("api/branch/delete/<id>", gymBranch.delete),
 
-
-    #regulations
-    path("api/regulation/create", regulation.create),
-    path("api/regulation/get/all", regulation.getAll),
-    path("api/regulation/put/<id>", regulation.update),
-    path("api/regulation/delete/<id>", regulation.delete),
-
-    #blacklist
-    path("api/blacklist/create", blackList.create),
-    path("api/blacklist/get/all", blackList.getAll),
-    path("api/blacklist/delete/<id>", blackList.delete),
-
 ]
+
+urlpatterns.extend(fuser.userEndpoints())
+urlpatterns.extend(fuser.assistanceEndpoints())
+urlpatterns.extend(fregulation.regulationEndpoints())
+urlpatterns.extend(fregulation.blackListEndpoints())
