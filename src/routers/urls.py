@@ -13,7 +13,7 @@ urlpatterns = [
     path("sign-up/", views.signup, name="signup"),
     path("logout/", views.signout, name="logout"),
     path("profile/", views.client, name="clientMain"),
-    path("operator/", views.opetator, name="operatorMain"),    
+    path("operator/", views.opetator, name="operatorMain"),
 
     #gymbranch
     path("api/branch/get", gymBranch.getAll),

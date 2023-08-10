@@ -33,6 +33,7 @@ def Assitence():
                 html.th("apellido"),
                 html.th("fecha"),
                 html.th("hora"),
+                html.th("sucursal"),
                 html.th("asistencia"),
             ),
             rows,

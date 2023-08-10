@@ -4,13 +4,11 @@ from .CardBlackList import CardBlackList
 import aiohttp
 
 
-
 @component
 def BlackList():
     getUrl = "http://127.0.0.1:8000/api/blacklist/get/all"
     regulationeData, setRegulationeData = hooks.use_state(initial_value="")
     rows, setRows = hooks.use_state(initial_value=[])
-
 
     async def getData():
         rows.clear()
@@ -24,10 +22,6 @@ def BlackList():
         for regulation in regulationeData:
             rows.append(CardBlackList(regulation))
 
-    hooks.use_effect(getData)
+    hooks.use_effect(getData, [])
 
-    return html.div(
-        {"class":"wrapper"},
-        FormBlackList(),
-        rows
-    )
+    return html.div({"class": "wrapper"}, FormBlackList(), rows)

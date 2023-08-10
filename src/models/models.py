@@ -3,11 +3,22 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 
+class GymBranch(models.Model):
+    name = models.CharField(max_length=200)
+    phone = models.CharField(max_length=20)
+    location = models.CharField(max_length=200)
+    open = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f"ID: {self.id} | Nombre: {self.nombre} | Teléfono: {self.telefono} | Dirección: {self.direccion}"
+
+
 class Assistance(models.Model):
     state = models.BooleanField(default=False)
     date = models.DateField(auto_now_add=True)
     hour = models.TimeField(default=timezone.now)
     idUser = models.ForeignKey(User, on_delete=models.CASCADE)
+    idBranch = models.ForeignKey(GymBranch, on_delete=models.CASCADE, null=True, blank=True)
 
     def convertTojson(self):
         return {
@@ -54,13 +65,3 @@ class Blacklist(models.Model):
 
     def __str__(self):
         return f"ID: {self.id} | IDUSER: {self.idUser.username} | REASON: {self.reason} | DATE: {self.date_added}"
-
-
-class GymBranch(models.Model):
-    name = models.CharField(max_length=200)  # Nombre de la sucursal
-    phone = models.CharField(max_length=20)  # Teléfono de la sucursal
-    location = models.CharField(max_length=200)  # Dirección de la sucursal
-    open = models.BooleanField(default=True)  # si se encuentra abierto on no
-
-    def __str__(self):
-        return f"ID: {self.id} | Nombre: {self.nombre} | Teléfono: {self.telefono} | Dirección: {self.direccion}"

@@ -18,5 +18,4 @@ class F_User:
         return [
             path("api/assitance/get", self.assistance.getAllToday),
             path("api/assitance/put/<id>", self.assistance.update),
-            path("api/assitance/search", self.assistance.searchUser),
         ]

@@ -1,7 +1,8 @@
 from django.shortcuts import redirect, render
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
+from django.views.decorators.csrf import csrf_exempt
 
 
 class User_:
@@ -36,6 +37,7 @@ class User_:
                     {"error": "Contraseña o Email incorrecto", "active": True},
                 )
 
+    @csrf_exempt
     def create(self, request) -> None:
         first_name = request.POST.get("first_name")
         last_name = request.POST.get("last_name")

@@ -1,35 +1,61 @@
 from reactpy import html, hooks, component, event
 import aiohttp
 
+
 @component
 def UserAssistence(data):
     assitenceState, setAssitenceState = hooks.use_state(eval(str(data["state"])))
-    color, setColor = hooks.use_state({"background-color":"#f0f0f0"})
+    branchData, setBranchData = hooks.use_state(initial_value="")
+    color, setColor = hooks.use_state({"background-color": "#f0f0f0"})
     url = "http://127.0.0.1:8000/api/assitance/put/" + str(data["id"])
+    urlBranch = "http://127.0.0.1:8000/api/branch/get"
+    idBranch, setIdBranch = hooks.use_state(initial_value=0)
 
     @event(prevent_default=True)
     async def send(event):
         color_()
-        data = {"state": assitenceState}
+        data = {"state": assitenceState, "idBranch": idBranch}
         async with aiohttp.ClientSession() as session:
             async with session.post(url, data=data) as resp:
                 response = await resp.json()
+                setIdBranch(0)
                 print(response)
+
+    async def getBranch():
+        async with aiohttp.ClientSession() as session:
+            async with session.get(urlBranch) as resp:
+                response = await resp.json()
+                setBranchData(response)
+
+    def createOnClickHandler(id):
+        setIdBranch(id)
+
+
+    def renderBranch():
+        row = []
+        for branchOne in branchData:
+            row.append(html.option({"value": branchOne["id"], "on_click":createOnClickHandler(branchOne["id"])}, branchOne["name"]))
+        return row
 
     def toggle(event):
         toggle_state = not assitenceState
         setAssitenceState(toggle_state)
+    
 
     def color_():
         if assitenceState:
-            setColor({"background-color":"#0076ff", "color":"white"})
+            setColor({"background-color": "#0076ff", "color": "white"})
         else:
-            setColor({"background-color":"#f0f0f0", "color":"black"})
-    
-    hooks.use_effect(color_, [])
+            setColor({"background-color": "#f0f0f0", "color": "black"})
+
+    async def run():
+        color_()
+        await getBranch()
+
+    hooks.use_effect(run, [])
 
     return html.tr(
-        {"id": data["id"],"class":"contentTable"},
+        {"id": data["id"], "class": "contentTable"},
         html.td(data["username"]),
         html.td(data["first_name"]),
         html.td(
@@ -42,11 +68,19 @@ def UserAssistence(data):
             data["hour"],
         ),
         html.td(
-            html.input(
-                {"type":"checkbox","on_click": toggle, "checked":assitenceState}
+            html.select(
+                {
+                    "name": "idBranch"
+                },
+                renderBranch(),
             )
         ),
         html.td(
-            html.button({"class":"save","on_click": send, "style":color}, "Guardar"),
+            html.input(
+                {"type": "checkbox", "on_click": toggle, "checked": assitenceState}
+            )
+        ),
+        html.td(
+            html.button({"class": "save", "on_click": send, "style": color}, "Guardar"),
         ),
     )
