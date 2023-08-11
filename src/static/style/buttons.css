@@ -72,3 +72,13 @@ input[type="checkbox"] {
 .editForm .twoButton button:nth-child(1) {
   background-color: var(--clrSecondary);
 }
+
+.btn_update{
+  background-color: var(--clrPrimary);
+  height: 2.5rem;
+  width: auto;
+  padding: .3125rem;
+  border-radius: .625rem;
+  margin-bottom: .9375rem;
+  color: var(--fontClrWhite);
+}

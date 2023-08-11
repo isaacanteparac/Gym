@@ -20,6 +20,7 @@
   - pip install django
     - veririfacion de instalacion django-admin --version
   - pip install reactpy-django
+  - pip install pytest-django
   - pip install channels[daphne]
   - pip install aiohttp
 

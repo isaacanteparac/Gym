@@ -22,6 +22,6 @@ def BlackList():
         for regulation in regulationeData:
             rows.append(CardBlackList(regulation))
 
-    hooks.use_effect(getData, [])
+    hooks.use_effect(getData)
 
     return html.div({"class": "wrapper"}, FormBlackList(), rows)

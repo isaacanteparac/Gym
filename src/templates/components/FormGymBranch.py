@@ -64,6 +64,7 @@ def FormGymBranch():
             html.input(
                 {
                     "required": True,
+                    "type": "number",
                     "name": "phone",
                     "value": phone,
                     "on_change": lambda event: setPhone(event["target"]["value"]),

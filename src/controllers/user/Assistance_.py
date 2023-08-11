@@ -14,13 +14,14 @@ class Assistance_:
 
     def __init__(self) -> None:
         hours_delay = 24 * 3600
-        takeAttendance = threading.Timer(3, self.assistanceAutomatically)
+        takeAttendance = threading.Timer(hours_delay, self.assistanceAutomatically)
         takeAttendance.start()
 
     def assistanceAutomatically(self) -> None:
         users = list(User.objects.all())
         for user in users:
-            self.create(user)
+            if user.is_superuser != True:
+                self.create(user)
 
     def create(self, user) -> JsonResponse:
         try:
