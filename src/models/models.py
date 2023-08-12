@@ -61,6 +61,8 @@ class Blacklist(models.Model):
             "userActive": self.idUser.is_active,
             "first_name": self.idUser.first_name,
             "last_name": self.idUser.last_name,
+            "idUser": self.idUser.id,
+            "idRegulation": self.idRegulation.id,
         }
 
     def __str__(self):

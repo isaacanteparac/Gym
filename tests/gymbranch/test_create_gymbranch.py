@@ -1,7 +1,6 @@
 import pytest
-from django.db.utils import IntegrityError
 from src.models.models import GymBranch
-from src.controllers.gymBranch.GymBranch_ import GymBranch_  # Ajusta la importación según tu estructura
+from src.controllers.gymBranch.GymBranch_ import GymBranch_
 from django.test import RequestFactory
 
 @pytest.fixture
@@ -10,7 +9,7 @@ def request_factory():
 
 @pytest.fixture
 def gym_branch_controller():
-    return GymBranch_()  # Crea una instancia de tu controlador
+    return GymBranch_()
 
 @pytest.mark.django_db
 def test_create_successful(request_factory, gym_branch_controller):
@@ -48,7 +47,6 @@ def test_create_empty_fields(request_factory, gym_branch_controller):
     data = {
         "name": "Gym C",
         "phone": "1111111111",
-        # Faltan campos obligatorios
     }
     request = request_factory.post("/create/", data)
     response = gym_branch_controller.create(request)

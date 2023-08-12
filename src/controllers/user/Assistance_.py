@@ -41,21 +41,26 @@ class Assistance_:
         try:
             state = request.POST.get("state")
             idBranch = request.POST.get("idBranch")
+            
             assistenceFilter = Assistance.objects.filter(id=id)
             gymBranchFilter = GymBranch.objects.filter(id=idBranch)
+            
             if assistenceFilter.exists():
                 assistance = assistenceFilter.get()
-                gymBranch = gymBranchFilter.get()
+                gymBranch = gymBranchFilter.first()
+
                 assistance.hour = timezone.localtime().time()
                 assistance.state = state
+                
                 if gymBranchFilter.exists():
                     assistance.idBranch = gymBranch
-                    assistance.save(update_fields=["idBranch"])
-
-                assistance.save(update_fields=["hour", "state"])
+                
+                assistance.save(update_fields=["hour", "state", "idBranch"])
+                
                 return JsonResponse({"put": True})
             else:
                 return JsonResponse({"msg": False, "idb": idBranch})
+        
         except Assistance.DoesNotExist:
             return JsonResponse({"msg": "no se encontro nada"})
         except GymBranch.DoesNotExist:
