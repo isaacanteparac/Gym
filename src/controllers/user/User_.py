@@ -59,40 +59,8 @@ class User_:
                 return redirect("clientMain")
             except InterruptedError:
                 return render("signup", {"msg": "Usuario existe"})
-
         return redirect("signup")
-
-    def update(self, request, username) -> JsonResponse:
-        try:
-            user = User.objects.get(username=username)
-        except User.DoesNotExist:
-            return JsonResponse({"update": False})
-        user.first_name = request.POST.get("name")
-        user.last_name = request.POST.get("last_name")
-        user.password = request.POST.get("password")
-        user.save()
-        return JsonResponse({"update": True})
-
-    def delete(self, request, username) -> JsonResponse:
-        try:
-            user = User.objects.get(username=username)
-        except User.DoesNotExist:
-            return JsonResponse({"delete": False})
-        user.delete()
-        return JsonResponse({"delete": True})
 
     def getAll(self, request) -> JsonResponse:
         usersAll = list(User.objects.values())
         return JsonResponse(usersAll, safe=False)
-
-    def searchUsername(self, request, username) -> JsonResponse:
-        user = list(User.objects.filter(username=username).values())
-        return JsonResponse(user, safe=False)
-
-    def getAllNoAdmin(self, request) -> JsonResponse:
-        user = list(User.objects.filter(is_superuser=0).values())
-        return JsonResponse(user, safe=False)
-
-    def getAllAdmin(self, request) -> JsonResponse:
-        user = list(User.objects.filter(is_superuser=1).values())
-        return JsonResponse(user, safe=False)

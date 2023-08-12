@@ -1,4 +1,4 @@
-# GYM JOJO's
+# GYM
 
 ### requerimmientos
 
@@ -8,6 +8,14 @@
 - [documentacion - jinja motor de plantillas](https://jinja.palletsprojects.com/en/3.1.x/)
 - [documentation - orm models](https://docs.djangoproject.com/en/4.2/topics/db/models/)
 - [documentation - reacpy](https://reactive-python.github.io/reactpy-django/get-started/installation/)
+
+### EJECUCION
+
+- .\venv\Scripts\activate.bat (activar entorno virtual)
+- **correr servidor local**
+  - python manage.py runserver
+- **ejecutar los test**
+  - pytest
 
 ### entonrono virtual
 
@@ -33,12 +41,6 @@
 - python manage.py makemigrations src
 - python manage.py migrate
 - agregar su respectivo __str__ en ./gym/models
-
-### correr server ( ejecutar)
-
-- python manage.py startapp gym
-- *ejecutar* python manage.py runserver
-- [localhost 8000](http://127.0.0.1:8000/)
 
 ### generar datos
 
