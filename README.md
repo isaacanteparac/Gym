@@ -16,6 +16,8 @@
   - python manage.py runserver
 - **ejecutar los test**
   - pytest
+  - ![image](https://github.com/isaacanteparac/Gym/assets/69361351/b924f14f-544d-413e-9bb1-ff6a5ba372fb)
+
 
 ### entonrono virtual
 
