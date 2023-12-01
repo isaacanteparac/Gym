@@ -1,15 +1,15 @@
 # GYM
 
-### requerimmientos
+### Requerimmientos
 
 - Python 3.11.3
 - pip 22.3.1
-- [download DB Browser for SQLite - PortableApp](https://sqlitebrowser.org/dl/)
+- [DB Browser for SQLite - PortableApp](https://sqlitebrowser.org/dl/)
 - [documentacion - jinja motor de plantillas](https://jinja.palletsprojects.com/en/3.1.x/)
 - [documentation - orm models](https://docs.djangoproject.com/en/4.2/topics/db/models/)
 - [documentation - reacpy](https://reactive-python.github.io/reactpy-django/get-started/installation/)
 
-### EJECUCION
+### Ejecucion
 
 - .\venv\Scripts\activate.bat (activar entorno virtual)
 - **correr servidor local**
@@ -19,7 +19,7 @@
   - ![image](https://github.com/isaacanteparac/Gym/assets/69361351/b924f14f-544d-413e-9bb1-ff6a5ba372fb)
 
 
-### entonrono virtual
+### Entorno Virtual
 
 - > creacion
   - pip install virtualenv
@@ -37,27 +37,22 @@
 - > generar proyecto
   - django-admin startproject nombrePro .
 
-### generar tablas
+### Generar Tablas
 
 - add tablas en ./gym/models
 - python manage.py makemigrations src
 - python manage.py migrate
 - agregar su respectivo __str__ en ./gym/models
 
-### generar datos
+### Generar Datos
 
-- [generacon de datos randoms](https://www.mockaroo.com/)
+- [datos randoms](https://www.mockaroo.com/)
 
-### admin
+### Administrar Base de Datos
 
-- sirver para administrar la base de datos
-- para poder visualizar las modelos se agregan en ./admin.py
+- visualizar los modelos en ./admin.py
+  - user: admin
+  - password: admin
+  - email: admin@admin.com
 - [link](http://127.0.0.1:8000/admin)
-- user: admin
-- password: admin
-- email: admin@admin.com
 
-## tutoriales
-
-- [Django, Curso de Django para Principiantes](https://www.youtube.com/watch?v=T1intZyhXDU)
-- [Django CRUD con Autenticacion](https://www.youtube.com/watch?v=e6PkGDH4wWA)
